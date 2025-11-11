@@ -2,7 +2,7 @@
 
 A training-free inference optimization method for enhancing VLA model performance through intelligent temporal visual information integration.
 
-We are thrilled to announce that our paper has been accepted by **AAAI 2026**!
+We are thrilled to announce that our paper has been accepted by **AAAI 2026**! Read the paper on arXiv: [https://arxiv.org/abs/2508.19257](https://arxiv.org/abs/2508.19257).
 
 ## Main Repository Structure
 

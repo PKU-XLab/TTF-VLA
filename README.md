@@ -1,59 +1,65 @@
-# TTF-VLA: Temporal Token Fusion for Vision-Language-Action Models
+# 🦾 TTF-VLA: Temporal Token Fusion for Vision-Language-Action Models
 
-A training-free inference optimization method for enhancing VLA model performance through intelligent temporal visual information integration.
+[![Paper](https://img.shields.io/badge/Paper-arXiv%3A2508.19257-b31b1b.svg)](https://arxiv.org/abs/2508.19257)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
 
-We are thrilled to announce that our paper has been accepted by **AAAI 2026**! Read the paper on arXiv: [https://arxiv.org/abs/2508.19257](https://arxiv.org/abs/2508.19257).
+A training-free inference optimization method for enhancing VLA model performance through intelligent temporal visual information integration.  
 
-## Main Repository Structure
+Project and repository led and maintained by [Chenghao Liu](https://github.com/MrCapricornLiu).
+
+We are thrilled to announce that our paper has been accepted by **AAAI 2026** 🎉. Read it on [arXiv](https://arxiv.org/abs/2508.19257).
+
+## 📦 Repository Structure
 
 ```bash
-ttf-vla/
+TTF-VLA/
 ├── experiments/robot/
 │   ├── aptube_manager.py           # Core TTF implementation
 │   ├── libero/
-│   │   └── run_libero_eval_aptube.py  # Core evaluation script (LIEERO Env)
+│   │   └── run_libero_eval_aptube.py  # Core evaluation script (LIBERO Env)
 │   └── openvla_utils.py            # VLA model utilities
 ├── prismatic/extern/hf/
 │   └── modeling_prismatic.py       # Model integration points
 └── README.md                       # This file
 ```
 
-Note that **aptube is the old name of ttf**. To avoid complicated bugs, we did not modify it in the code.
+> Note: **aptube** is the old name of TTF. To avoid unnecessary bugs, we kept it unchanged in the code.
 
-## Setup
+## ⚙️ Setup
 
-If you don't have mamba, run the following command first.
+If you don't have mamba, run the following command first:
+
 ```bash
 conda install -n base -c conda-forge mamba
-# After installation is complete, verify the version
 mamba --version
-eval "$(mamba shell hook --shell bash)"
 mamba shell init --shell bash
 exec $SHELL -l
 ```
 
-Either mamba or conda works; mamba is much faster. **If you don't want to use mamba, just replace `mamba` with `conda` in all following commands.**
+Either mamba or conda works; mamba is much faster.
+**If you prefer conda**, simply replace all `mamba` commands below with `conda`.
+
 ```bash
 mamba create -n ttfvla python=3.10 -y
 mamba activate ttfvla
 mamba install pytorch torchvision torchaudio pytorch-cuda=12.4 -c pytorch -c nvidia -y  
 
-# pwd: ~/ttf-vla
+# pwd: ~/TTF-VLA
 # VLA-related packages
 pip install -e .
 
 # LIBERO Environment packages
 git clone https://github.com/Lifelong-Robot-Learning/LIBERO.git
 cd LIBERO 
-# pwd: ~/ttf-vla/LIBERO
+# pwd: ~/TTF-VLA/LIBERO
 pip install -e .
 
 cd .. 
-# pwd: ~/ttf-vla
+# pwd: ~/TTF-VLA
 pip install -r experiments/robot/libero/libero_requirements.txt
 ```
 
-Afterward, this error may occur:
+⚠️ Afterward, this error may occur:
 ```
 ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts. tensorflow 2.15.0 requires numpy<2.0.0,>=1.23.5, but you have numpy 2.2.6 which is incompatible.
 ```
@@ -61,11 +67,11 @@ Then just run
 ```bash
 pip install numpy==1.26
 ```
-After that, **it will report a conflict error between numpy and tensorflow, just ignore it.**
+⚠️ After that, **it will report a conflict error between numpy and tensorflow, just ignore it.**
 
-Because we need to extract attention during inference, we don’t need flash attention. Don’t worry, this has almost no impact on inference speed for VLA models.
+Because we need to extract attention during inference, we don't use flash attention. Don’t worry, this has almost no impact on inference speed for VLA models.
 
-## Download Pretrained Models
+## 🧩 Download Pretrained Models
 
 ```bash
 mamba activate ttfvla
@@ -78,11 +84,11 @@ You can change the model_id to download other models as needed:
 
 Note that openvla-7b-finetuned-libero-10 is the name of model finetuned on LIBERO-Long task suite.
 
-## Evaluation on LIBERO Task
+## 🧪 Evaluation on LIBERO Tasks
 
 ```bash
 # Evaluate OpenVLA + TTF on Object task suite
-# pwd: ~/ttf-vla
+# pwd: ~/TTF-VLA
 python experiments/robot/libero/run_libero_eval_aptube.py \
     --pretrained_checkpoint "checkpoints/openvla-7b-finetuned-libero-object" \
     --task_suite_name "libero_object" \
@@ -95,17 +101,17 @@ python experiments/robot/libero/run_libero_eval_aptube.py \
     --num_trials_per_task 20
 ```
 
-### Available Task Suites
-- `libero_object` - Object manipulation tasks
-- `libero_spatial` - Spatial reasoning tasks  
-- `libero_goal` - Goal-conditioned tasks
-- `libero_10` - Long-horizon tasks
+**Available task suites:**
 
+* 🧱 `libero_object` — Object manipulation tasks
+* 📐 `libero_spatial` — Spatial reasoning tasks
+* 🎯 `libero_goal` — Goal-conditioned tasks
+* ⏱️ `libero_10` — Long-horizon tasks
 
-
-## Citation
+## 📖 Citation
 
 If you find this work useful, please cite:
+
 ```bibtex
 @article{liu2025ttf,
   title={TTF-VLA: Temporal Token Fusion via Pixel-Attention Integration for Vision-Language-Action Models},
@@ -115,5 +121,8 @@ If you find this work useful, please cite:
   url={https://arxiv.org/abs/2508.19257}
 }
 ```
-## Acknowledgements
+
+## 🙏 Acknowledgements
+
 We build upon the excellent works of [OpenVLA](https://github.com/openvla/openvla) and [VLA-Cache](https://github.com/siyuhsu/vla-cache). We sincerely appreciate their great work.
+

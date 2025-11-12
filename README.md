@@ -1,4 +1,4 @@
-# 🦾 TTF-VLA: Temporal Token Fusion for Vision-Language-Action Models
+# 🦾 TTF-VLA: Temporal Token Fusion via Pixel-Attention Integration for Vision-Language-Action Models
 
 [![Paper](https://img.shields.io/badge/Paper-arXiv%3A2508.19257-b31b1b.svg)](https://arxiv.org/abs/2508.19257)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
